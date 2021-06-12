@@ -1,0 +1,6 @@
+# assebled folders
+build/**/*
+dist/**/*
+
+# notes
+NOTES.md

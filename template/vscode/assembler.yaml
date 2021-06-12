@@ -1,0 +1,5 @@
+pack: true
+output: build/vscode.lotus-theme
+
+assets:
+  - README.md
