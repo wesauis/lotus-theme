@@ -1,3 +1,4 @@
+/** @type {import('../../assembler/src/template').GenPack} */
 module.exports = (schemas) => [
   [
     "package.json",

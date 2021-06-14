@@ -1,3 +1,4 @@
+/** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
   return schemas.map((schema) => [
     `lotus-${schema.name}.json`.toLowerCase(),
