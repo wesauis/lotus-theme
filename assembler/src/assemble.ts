@@ -13,6 +13,9 @@ export async function assemble(id: string, schema: Schema, config: Config) {
   info(`assembling ${id} to ${outdir}`);
 
   await rm(outdir, { force: true, recursive: true });
+  await mkdir(config.outdir, { recursive: true });
+  await copyFile(`CHANGELOG.md`, `${outdir}/CHANGELOG.md`);
+
   for await (const resouce of glob("**/*", {
     onlyFiles: true,
     cwd: `template/${id}`,
