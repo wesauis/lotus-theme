@@ -1,12 +1,11 @@
 import { lstat } from "fs/promises";
+import { assemble } from "./assemble";
 import { assemblePack } from "./assemble-pack";
-import { Config, loadConfig } from "./config";
-import "./logger";
-import { loadSchemas, Schema } from "./schema";
+import { loadConfig } from "./config";
+import { init as initLogger } from "./logger";
+import { loadSchemas } from "./schema";
 
-async function assemble(id: string, schema: Schema, config: Config) {
-  console.log(config);
-}
+initLogger();
 
 (async () => {
   const schemas = await loadSchemas();

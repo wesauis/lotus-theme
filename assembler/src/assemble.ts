@@ -1,19 +1,15 @@
-import { copyFile, mkdir, rm, writeFile } from "fs/promises";
 import { stream as glob } from "fast-glob";
-import { Config } from "./config";
-import { Schema } from "./schema";
+import { copyFile, mkdir, rm, writeFile } from "fs/promises";
 import { dirname } from "path";
-import { GenPack } from "./template";
+import { Config } from "./config";
 import { infoOf } from "./logger";
+import { Schema } from "./schema";
+import { Gen } from "./template";
 
-export async function assemblePack(
-  id: string,
-  schemas: Schema[],
-  config: Config
-) {
-  const info = infoOf(id);
+export async function assemble(id: string, schema: Schema, config: Config) {
+  const info = infoOf(id, schema.name.toLowerCase());
 
-  info(`assembling pack ${id} to ${config.outdir}`);
+  info(`assembling ${id} to ${config.outdir}`);
 
   await rm(config.outdir, { force: true, recursive: true });
   for await (const resouce of glob("**/*", {
@@ -43,19 +39,17 @@ export async function assemblePack(
       info(`generating from template: ${resouce}`);
 
       const gen = await import(`../template/${id}/${resouce}`).then(
-        (mod) => mod.default as GenPack
+        (mod) => mod.default as Gen
       );
 
-      await Promise.all(
-        gen(schemas).map(async ([generated, content]) => {
-          if (typeof content === "object") {
-            content = JSON.stringify(content, null, 2);
-          }
+      let [generated, content] = gen(schema);
 
-          info(`${resouce} -gen> ${generated}`);
-          await writeFile(`${dirname(outfile)}/${generated}`, content, "utf8");
-        })
-      );
+      if (typeof content === "object") {
+        content = JSON.stringify(content, null, 2);
+      }
+
+      info(`${resouce} -gen> ${generated}`);
+      await writeFile(`${dirname(outfile)}/${generated}`, content, "utf8");
     }
   }
 }

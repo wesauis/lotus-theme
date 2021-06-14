@@ -8,27 +8,34 @@ const prefixes = {
   debug: chalk.magenta("debug"),
 };
 
-const info = console.info;
-console.info = (...data) => {
-  if (typeof data[0]?.id === "string") {
-    info(`${prefixes.info}(${data[0]?.id})`, ...data.slice(1));
-    return;
-  }
+export function init() {
+  const info = console.info;
+  console.info = (...data) => {
+    info(prefixes.info, ...data);
+  };
 
-  info(prefixes.info, ...data);
-};
+  const warn = console.warn;
+  console.warn = (...data) => {
+    warn(prefixes.warn, ...data);
+  };
 
-const warn = console.warn;
-console.warn = (...data) => {
-  warn(prefixes.warn, ...data);
-};
+  const error = console.error;
+  console.error = (...data) => {
+    if (data[0] instanceof Error) {
+      error(prefixes.error, data[0].message);
+      return;
+    }
 
-const error = console.error;
-console.error = (...data) => {
-  if (data[0] instanceof Error) {
-    error(prefixes.error, data[0].message);
-    return;
-  }
+    error(prefixes.error, ...data);
+  };
+}
 
-  error(prefixes.error, ...data);
-};
+export function infoOf(id: string, schema?: string) {
+  return schema
+    ? (...data) => {
+        console.log(`${prefixes.info}(${id}/${schema})`, ...data);
+      }
+    : (...data) => {
+        console.log(`${prefixes.info}(${id})`, ...data);
+      };
+}
