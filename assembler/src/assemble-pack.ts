@@ -1,0 +1,58 @@
+import { copyFile, mkdir, rm, writeFile } from "fs/promises";
+import { stream as glob } from "fast-glob";
+import { Config } from "./config";
+import { Schema } from "./schema";
+import { dirname } from "path";
+import { GenPack } from "./template";
+
+export async function assemblePack(
+  id: string,
+  schemas: Schema[],
+  config: Config
+) {
+  console.info({ id }, `assembling pack ${id} to ${config.outdir}`);
+
+  await rm(config.outdir, { force: true, recursive: true });
+  for await (const resouce of glob("**/*", {
+    onlyFiles: true,
+    cwd: `template/${id}`,
+  })) {
+    if (resouce instanceof Buffer) continue;
+    const outfile = `${config.outdir}/${resouce}`;
+
+    const isAsset = config.assets.includes(resouce);
+    const isTemplate = resouce.endsWith(".js");
+
+    if (isAsset || isTemplate) {
+      await mkdir(dirname(outfile), {
+        recursive: true,
+      });
+    }
+
+    if (isAsset) {
+      console.info({ id }, `copying resouce ${resouce}`);
+
+      await copyFile(
+        `template/${id}/${resouce}`,
+        `${config.outdir}/${resouce}`
+      );
+    } else if (isTemplate) {
+      console.info({ id }, `generating from template: ${resouce}`);
+
+      const gen = await import(`../template/${id}/${resouce}`).then(
+        (mod) => mod.default as GenPack
+      );
+
+      await Promise.all(
+        gen(schemas).map(async ([generated, content]) => {
+          if (typeof content === "object") {
+            content = JSON.stringify(content, null, 2);
+          }
+
+          console.info({ id }, `${resouce} -gen> ${generated}`);
+          await writeFile(`${dirname(outfile)}/${generated}`, content, "utf8");
+        })
+      );
+    }
+  }
+}

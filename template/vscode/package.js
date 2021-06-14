@@ -1,4 +1,4 @@
-export default (schemas) => [
+module.exports = (schemas) => [
   [
     "package.json",
     {

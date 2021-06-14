@@ -1,0 +1,22 @@
+{
+  "name": "assembler",
+  "version": "0.0.1",
+  "description": "theme assembler",
+  "private": true,
+  "main": "assembler.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "fast-glob": "^3.2.5",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/js-yaml": "^4.0.1",
+    "@types/node": "^15.12.2",
+    "esbuild": "^0.11.0"
+  }
+}

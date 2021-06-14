@@ -1,6 +1,6 @@
-export default (schemas) => {
+module.exports = (schemas) => {
   return schemas.map((schema) => [
-    `lotus-${schama.name}`.toLowerCase(),
+    `lotus-${schema.name}.json`.toLowerCase(),
     {
       name: `Lotus ${schema.name}`,
       type: schema.lightness,

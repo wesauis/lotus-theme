@@ -1,0 +1,4 @@
+node_modules/
+
+# built assembler
+assembler.js
