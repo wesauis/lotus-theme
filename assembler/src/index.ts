@@ -9,10 +9,7 @@ initLogger();
 
 (async () => {
   const schemas = await loadSchemas();
-  console.info(
-    "loaded schemas:",
-    schemas.map((s) => s.name.toLowerCase()).join(", ")
-  );
+  console.info("loaded schemas:", schemas.map((s) => s.id).join(", "));
 
   await Promise.all(
     process.argv

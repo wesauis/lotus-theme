@@ -7,9 +7,9 @@ import { Schema } from "./schema";
 import { Gen } from "./template";
 
 export async function assemble(id: string, schema: Schema, config: Config) {
-  const info = infoOf(id, schema.name.toLowerCase());
+  const info = infoOf(id, schema.id);
 
-  const outdir = config.outdir.replace("theme", schema.name.toLowerCase());
+  const outdir = config.outdir.replace("lotus-theme", schema.id);
   info(`assembling ${id} to ${outdir}`);
 
   await rm(outdir, { force: true, recursive: true });

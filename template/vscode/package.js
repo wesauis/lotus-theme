@@ -13,13 +13,13 @@ module.exports = (schemas) => [
       categories: ["Themes"],
       contributes: {
         themes: schemas.map((schema) => ({
-          label: `Lotus ${schema.name}`,
+          label: schema.name,
           uiTheme: {
             dark: "vs-dark",
             light: "vs",
             hc: "hc-black",
           }[schema.lightness],
-          path: `./themes/lotus-${schema.name}.json`.toLowerCase(),
+          path: `./themes/${schema.id}.json`,
         })),
       },
     },

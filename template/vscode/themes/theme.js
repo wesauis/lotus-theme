@@ -1,9 +1,9 @@
 /** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
   return schemas.map((schema) => [
-    `lotus-${schema.name}.json`.toLowerCase(),
+    `${schema.id}.json`,
     {
-      name: `Lotus ${schema.name}`,
+      name: schema.name,
       type: schema.lightness,
       tokenColors: [
         {
