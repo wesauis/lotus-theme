@@ -27,9 +27,7 @@ export async function assemblePack(
     const isTemplate = resouce.endsWith(".js");
 
     if (isAsset || isTemplate) {
-      await mkdir(dirname(outfile), {
-        recursive: true,
-      });
+      await mkdir(dirname(outfile), { recursive: true });
     }
 
     if (isAsset) {

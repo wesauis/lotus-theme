@@ -9,15 +9,16 @@ import { Gen } from "./template";
 export async function assemble(id: string, schema: Schema, config: Config) {
   const info = infoOf(id, schema.name.toLowerCase());
 
-  info(`assembling ${id} to ${config.outdir}`);
+  const outdir = config.outdir.replace("theme", schema.name.toLowerCase());
+  info(`assembling ${id} to ${outdir}`);
 
-  await rm(config.outdir, { force: true, recursive: true });
+  await rm(outdir, { force: true, recursive: true });
   for await (const resouce of glob("**/*", {
     onlyFiles: true,
     cwd: `template/${id}`,
   })) {
     if (resouce instanceof Buffer) continue;
-    const outfile = `${config.outdir}/${resouce}`;
+    const outfile = `${outdir}/${resouce}`;
 
     const isAsset = config.assets.includes(resouce);
     const isTemplate = resouce.endsWith(".js");
@@ -31,10 +32,7 @@ export async function assemble(id: string, schema: Schema, config: Config) {
     if (isAsset) {
       info(`copying resouce ${resouce}`);
 
-      await copyFile(
-        `template/${id}/${resouce}`,
-        `${config.outdir}/${resouce}`
-      );
+      await copyFile(`template/${id}/${resouce}`, `${outdir}/${resouce}`);
     } else if (isTemplate) {
       info(`generating from template: ${resouce}`);
 
