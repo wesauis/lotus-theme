@@ -1,15 +1,37 @@
-// A launch configuration that launches the extension inside a new window
-// Use IntelliSense to learn about possible attributes.
-// Hover to view descriptions of existing attributes.
-// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension",
+      "name": "VSCode Watch",
+      "request": "launch",
+      "runtimeArgs": [
+        "./assembler/node_modules/nodemon/bin/nodemon.js",
+        "--watch",
+        "./template/vscode/",
+        "--watch",
+        "schema",
+        "--exec",
+        "node",
+        "assembler",
+        "vscode"
+      ],
+      "runtimeExecutable": "node",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "name": "VSCode ExtHost",
       "type": "extensionHost",
       "request": "launch",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}/template/vscode"]
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/build/vscode.lotus-theme"
+      ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "VSCode Dev",
+      "configurations": ["VSCode Watch", "VSCode ExtHost"]
     }
   ]
 }
