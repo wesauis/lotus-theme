@@ -1,5 +1,27 @@
 {
   "id": "lotus-dark",
   "name": "Lotus Dark",
-  "lightness": "dark"
+  "lightness": "dark",
+
+  "text": "#C4BFBA",
+  "terminal": {
+    "black": "#0B0D0E",
+    "blackBright": "#627884",
+    "blue": "#3C9ADD",
+    "blueBright": "#93C7EC",
+    "cyan": "#30E8C9",
+    "cyanBright": "#8CF2E1",
+    "green": "#79C653",
+    "greenBright": "#97D279",
+    "purple": "#C23CDD",
+    "purpleBright": "#CF67E4",
+    "red": "#D7425B",
+    "redBright": "#E06C7F",
+    "white": "#C4BFBA",
+    "whiteBright": "#E8E6E3",
+    "yellow": "#DDB43C",
+    "yellowBright": "#E4C567",
+    "background": "#1C2022",
+    "selection": "#121516"
+  }
 }
