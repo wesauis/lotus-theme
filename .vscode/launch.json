@@ -2,36 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "VSCode Watch",
-      "request": "launch",
-      "runtimeArgs": [
-        "./assembler/node_modules/nodemon/bin/nodemon.js",
-        "--watch",
-        "./template/vscode/",
-        "--watch",
-        "schema",
-        "--exec",
-        "node",
-        "assembler",
-        "vscode"
-      ],
-      "runtimeExecutable": "node",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
-    },
-    {
-      "name": "VSCode ExtHost",
+      "name": "VSCode Extension Host",
       "type": "extensionHost",
       "request": "launch",
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}/build/vscode.lotus-theme"
       ]
-    }
-  ],
-  "compounds": [
-    {
-      "name": "VSCode Dev",
-      "configurations": ["VSCode Watch", "VSCode ExtHost"]
     }
   ]
 }

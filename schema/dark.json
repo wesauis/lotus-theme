@@ -23,5 +23,16 @@
     "yellowBright": "#E4C567",
     "background": "#1C2022",
     "selection": "#121516"
+  },
+  "json": {
+    "keyLevels": [
+      "#B583E7",
+      "#E783C2",
+      "#E78397",
+      "#E79A83",
+      "#E78483",
+      "#E783AD",
+      "#CB83E7"
+    ]
   }
 }
