@@ -3,7 +3,43 @@
   "name": "Lotus Dark",
   "lightness": "dark",
 
-  "text": "#C4BFBA",
+  "ui": {
+    "text": "#C4BFBA"
+  },
+
+  "tokens": {
+    "types": {
+      "class": "#E7CD83",
+      "enum": "#E7CD83",
+      "function": "#94C8EA",
+      "interface": "#E7CD83",
+      "namespace": "#E7CD83",
+      "property": "#E1E4E8",
+      "struct": "#E7CD83",
+      "type": "#E7CD83",
+      "variable": "#E1E4E8"
+    },
+    "operators": {
+      "arithmetic": "#FEAC67",
+      "bitwise": "#CDE783",
+      "comparison": "#E67FD9",
+      "incdecrement": "#8CF2E1",
+      "nullcheck": "#E783A4"
+    },
+    "language": {
+      "builtin": "#7FBDE6",
+      "comment": "#6A737D",
+      "constant": "#E79A83",
+      "invalid": "#FF5370",
+      "keyword": "#BF83E7",
+      "punctuation": "#6A737D"
+    },
+    "literals": {
+      "number": "#8389E7",
+      "string": "#CDE783"
+    }
+  },
+
   "terminal": {
     "black": "#0B0D0E",
     "blackBright": "#627884",
@@ -24,6 +60,7 @@
     "background": "#1C2022",
     "selection": "#121516"
   },
+
   "json": {
     "keyLevels": [
       "#B583E7",
