@@ -1,476 +1,276 @@
-
-/** Returns the token matchers for json keys up to deph 250.
- * 
- * @param {string[]} colors json key levels colors
- * @returns {{
- *     name: `JSON Key Level ${string}`
- *     scope: string[],
- *     settings: {
- *       [key: string]: string,
- *       foreground: string,
- *     },
- *   }[]} a list of json key level tokens
- */
-function jsonTokenLevels(colors) {
-  const levelMatcher = (level) =>
-    new Array(level + 1).fill("meta.structure.dictionary.json").join(" ");
-
-  const scopes = (index) => {
-    const scopeMatchers = [];
-    for (let level = index; level < 250; level += colors.length) {
-      scopeMatchers.push(
-        `source.json ${levelMatcher(level)} support.type.property-name`
-      );
-    }
-    return scopeMatchers;
-  };
-
-  return colors.map((color, index) => ({
-    name: `JSON Key Level ${index}`,
-    scope: scopes(index),
-    settings: { foreground: color },
-  }));
-}
+const staticTokens = [
+  {
+    name: "URL",
+    scope: ["*url*", "*link*", "*uri*"],
+    settings: {
+      fontStyle: "underline",
+    },
+  },
+];
 
 /** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
   return schemas.map((schema) => [
     `${schema.id}.json`,
     {
+      $schema: "vscode://schemas/color-theme",
       name: schema.name,
       type: schema.lightness,
       semanticHighlighting: true,
+      semanticTokenColors: {
+        class: schema.tokens.types.class,
+        enum: schema.tokens.types.enum,
+        function: schema.tokens.types.function,
+        interface: schema.tokens.types.interface,
+        namespace: schema.tokens.types.namespace,
+        property: schema.tokens.types.property,
+        struct: schema.tokens.types.struct,
+        type: schema.tokens.types.type,
+        variable: schema.tokens.types.variable,
+        "variable.defaultLibrary": schema.tokens.language.builtin,
+      },
       tokenColors: [
-        {
-          name: "URL",
-          scope: ["*url*", "*link*", "*uri*"],
-          settings: {
-            fontStyle: "underline",
+        // TODO key levels for code (js/obj,py/dict,yaml)
+        // TODO regex highlight
+        ...staticTokens,
+        // tokens.types
+        ...[
+          {
+            name: "Function Declarations",
+            scope: [
+              "entity.name.function",
+              "variable.function",
+              "support.function",
+              "support.constant.handlebars",
+              "source.powershell variable.other.member",
+              "keyword.other.special-method",
+              "entity.name.operator.custom-literal", // See https://en.cppreference.com/w/cpp/language/user_literal
+            ],
+            settings: {
+              foreground: schema.tokens.types.function,
+            },
           },
-        },
-        {
-          name: "Comment",
-          scope: [
-            "comment",
-            "punctuation.definition.comment",
-            "string.quoted.docstring",
-          ],
-          settings: {
-            foreground: "#6A737D",
+          {
+            name: "Types Declaration and References",
+            scope: [
+              "meta.return-type",
+              "support.class",
+              "support.type",
+              "entity.name.type",
+              "entity.name.namespace",
+              "entity.other.attribute",
+              "entity.name.scope-resolution",
+              "entity.name.class",
+              "storage.type.numeric.go",
+              "storage.type.byte.go",
+              "storage.type.boolean.go",
+              "storage.type.string.go",
+              "storage.type.uintptr.go",
+              "storage.type.error.go",
+              "storage.type.rune.go",
+              "storage.type.cs",
+              "storage.type.generic.cs",
+              "storage.type.modifier.cs",
+              "storage.type.variable.cs",
+              "storage.type.annotation.java",
+              "storage.type.generic.java",
+              "storage.type.java",
+              "storage.type.object.array.java",
+              "storage.type.primitive.array.java",
+              "storage.type.primitive.java",
+              "storage.type.token.java",
+              "storage.type.groovy",
+              "storage.type.annotation.groovy",
+              "storage.type.parameters.groovy",
+              "storage.type.generic.groovy",
+              "storage.type.object.array.groovy",
+              "storage.type.primitive.array.groovy",
+              "storage.type.primitive.groovy",
+            ],
+            settings: {
+              foreground: schema.tokens.types.type,
+            },
           },
-        },
-        {
-          name: "Keyword",
-          scope: [
-            "keyword",
-            "keyword.control",
-            "storage.type",
-            "storage.modifier",
-            "fenced_code.block.language.markdown",
-            "punctuation.definition.binding-pattern",
-            "punctuation.accessor",
-            "punctuation.definition.parameters.varargs",
-          ],
-          settings: {
-            foreground: "#BF83E7",
+          {
+            name: "Variable",
+            scope: [
+              "variable.other.readwrite",
+              "entity.name.variable",
+              // "variable",
+              // "variable.parameter",
+              // "meta.tag",
+              // "meta.object-literal.key string.quoted",
+              // "string constant.other.placeholder",
+              // "meta.definition.variable punctuation.bracket",
+              // "meta.function-call.arguments",
+              // "variable.other.definition",
+              // "variable.other.object.property",
+              // "meta.definition.variable variable.other"
+            ],
+            settings: {
+              foreground: schema.tokens.types.variable,
+            },
           },
-        },
-        {
-          name: "Tag",
-          scope: [
-            "entity.name.tag",
-            "meta.tag.sgml",
-            "markup.deleted.git_gutter",
-          ],
-          settings: {
-            foreground: "#BF83E7",
+        ],
+        // tokens.operators
+        ...[
+          {
+            name: "Arithmetic Operators",
+            scope: ["keyword.operator.arithmetic"],
+            settings: {
+              foreground: schema.tokens.operators.arithmetic,
+            },
           },
-        },
-        {
-          name: "Punctuation",
-          scope: [
-            "constant.other.color",
-            "punctuation",
-            "punctuation.definition.tag",
-            "punctuation.separator.inheritance.php",
-            "punctuation.definition.tag.html",
-            "punctuation.definition.tag.begin.html",
-            "punctuation.definition.tag.end.html",
-            "punctuation.section.embedded",
-            "keyword.other.template",
-            "keyword.other.substitution",
-          ],
-          settings: {
-            foreground: "#6A737D",
+          {
+            name: "Bitwise Operators",
+            scope: ["keyword.operator.bitwise"],
+            settings: {
+              foreground: schema.tokens.operators.bitwise,
+            },
           },
-        },
-        {
-          name: "Variables",
-          scope: [
-            "variable",
-            "variable.parameter",
-            "meta.tag",
-            "meta.object-literal.key string.quoted",
-            "string constant.other.placeholder",
-            "meta.definition.variable punctuation.bracket",
-            "meta.function-call.arguments",
-            "variable.other.definition",
-            "variable.other.object.property",
-            "meta.definition.variable variable.other",
-          ],
-          settings: {
-            foreground: "#E3E5E7",
+          {
+            name: "Relacional and Comparison Operators",
+            scope: ["keyword.operator.relational"],
+            settings: {
+              foreground: schema.tokens.operators.comparison,
+            },
           },
-        },
-        {
-          name: "Block Level Variables",
-          scope: ["meta.block variable.other"],
-          settings: {
-            foreground: "#E3E5E7",
+          {
+            name: "IncDecrement Operators",
+            scope: [
+              "keyword.operator.increment",
+              "keyword.operator.decrement",
+              "keyword.operator.increment-decrement",
+            ],
+            settings: {
+              foreground: schema.tokens.operators.incdecrement,
+            },
           },
-        },
-        {
-          name: "CSS Unit",
-          scope: [
-            "source.css keyword.other.unit",
-            "source.sass keyword.other.unit",
-            "source.scss keyword.other.unit",
-            "source.less keyword.other.unit",
-            "source.stylus keyword.other.unit",
-            "source.postcss keyword.other.unit",
-          ],
-          settings: {
-            foreground: "#BF83E7",
+          {
+            name: "Nullcheck, Interpolation Exp",
+            scope: [
+              "keyword.operator.nulltype",
+              "string.interpolated.expression",
+              "constant.character.format.placeholder.other.python",
+              "punctuation.definition.template-expression",
+              "punctuation.accessor.optional",
+            ],
+            settings: {
+              foreground: schema.tokens.operators.nullcheck,
+            },
           },
-        },
-        {
-          name: "CSS Variable",
-          scope: [
-            "variable.css",
-            "variable.sass",
-            "variable.scss",
-            "variable.less",
-            "variable.stylus",
-            "variable.postcss",
-            "variable.argument.css",
-            "variable.argument.sass",
-            "variable.argument.scss",
-            "variable.argument.less",
-            "variable.argument.stylus",
-            "variable.argument.postcss",
-          ],
-          settings: {
-            foreground: "#E79783",
+        ],
+        // tokens.language
+        ...[
+          {
+            name: "BuiltIn",
+            scope: ["support.constant"],
+            settings: {
+              foreground: schema.tokens.language.builtin,
+            },
           },
-        },
-        {
-          name: "CSS Selector",
-          scope: [
-            "source.css entity.other.attribute-name",
-            "source.sass entity.other.attribute-name",
-            "source.scss entity.other.attribute-name",
-            "source.less entity.other.attribute-name",
-            "source.stylus entity.other.attribute-name",
-            "source.postcss entity.other.attribute-name",
-          ],
-          settings: {
-            foreground: "#CDE783",
+          {
+            name: "Comment",
+            scope: [
+              "comment",
+              "string.quoted.docstring",
+              "punctuation.definition.comment",
+            ],
+            settings: {
+              foreground: schema.tokens.language.comment,
+            },
           },
-        },
-        {
-          name: "CSS Properties",
-          scope: [
-            "source.css support.type.property-name",
-            "source.sass support.type.property-name",
-            "source.scss support.type.property-name",
-            "source.less support.type.property-name",
-            "source.stylus support.type.property-name",
-            "source.postcss support.type.property-name",
-          ],
-          settings: {
-            foreground: "#E3E5E7",
+          {
+            name: "Language Constants (true, false...)",
+            scope: "constant.language",
+            settings: {
+              foreground: schema.tokens.language.constant,
+            },
           },
-        },
-        {
-          name: "CSS Vendored Property",
-          scope: [
-            "source.css support.type.vendored.property-name",
-            "source.sass support.type.vendored.property-name",
-            "source.scss support.type.vendored.property-name",
-            "source.less support.type.vendored.property-name",
-            "source.stylus support.type.vendored.property-name",
-            "source.postcss support.type.vendored.property-name",
-          ],
-          settings: {
-            foreground: "#E3E5E7",
-            fontStyle: "bold",
+          {
+            name: "Invalid",
+            scope: ["invalid", "invalid.illegal"],
+            settings: {
+              foreground: schema.tokens.language.invalid,
+              fontStyle: "italic bold underline",
+            },
           },
-        },
-        {
-          name: "CSS Property Value",
-          scope: [
-            "source.css support.constant",
-            "source.sass support.constant",
-            "source.scss support.constant",
-            "source.less support.constant",
-            "source.stylus support.constant",
-            "source.postcss support.constant",
-          ],
-          settings: {
-            foreground: "#E783DA",
+          {
+            name: "Keyword",
+            scope: [
+              "keyword",
+              "storage.type",
+              "storage.modifier",
+              // "fenced_code.block.language.markdown",
+              // "punctuation.definition.binding-pattern",
+              // "punctuation.accessor",
+              // "punctuation.definition.parameters.varargs",
+              "keyword.control",
+              "source.cpp keyword.operator.new",
+              "keyword.operator.delete",
+              "keyword.other.using",
+              "keyword.other.operator",
+              "entity.name.operator",
+            ],
+            settings: {
+              foreground: schema.tokens.language.keyword,
+            },
           },
-        },
-        {
-          name: "CSS Vendored Property Value",
-          scope: [
-            "source.css support.constant.vendored",
-            "source.sass support.constant.vendored",
-            "source.scss support.constant.vendored",
-            "source.less support.constant.vendored",
-            "source.stylus support.constant.vendored",
-            "source.postcss support.constan.vendoredt",
-          ],
-          settings: {
-            foreground: "#E783DA",
-            fontStyle: "bold",
+          {
+            name: "Punctuation",
+            scope: [
+              "punctuation",
+              "punctuation.definition.string string",
+              // TODO dart string interpolated string
+              // "punctuation.definition.tag",
+              // "punctuation.separator.inheritance.php",
+              // "punctuation.definition.tag.html",
+              // "punctuation.definition.tag.begin.html",
+              // "punctuation.definition.tag.end.html",
+              // "punctuation.section.embedded",
+              // "constant.other.color",
+              // "keyword.other.template",
+              // "keyword.other.substitution",
+            ],
+            settings: {
+              foreground: schema.tokens.language.punctuation,
+            },
           },
-        },
-        {
-          name: "Function",
-          scope: [
-            "entity.name.function",
-            "variable.function",
-            "support.function",
-            "keyword.other.special-method",
-          ],
-          settings: {
-            foreground: "#83BFE7",
+        ],
+        // tokens.literals
+        ...[
+          {
+            name: "String Literal",
+            scope: [
+              "string",
+              "meta.embedded.assembly",
+              "string meta.embedded.assembly",
+              "storage.modifier.import",
+            ],
+            settings: {
+              foreground: schema.tokens.literals.string,
+            },
           },
-        },
-        {
-          name: "Number",
-          scope: [
-            "constant.numeric",
-            "constant.language",
-            "support.constant",
-            "constant.character",
-            "constant.escape",
-          ],
-          settings: {
-            foreground: "#8389E7",
+          {
+            name: "Numeric Literal",
+            scope: ["constant.numeric"],
+            settings: {
+              foreground: schema.tokens.literals.number,
+            },
           },
-        },
-        {
-          name: "Escape Characters",
-          scope: ["constant.character.escape"],
-          settings: {
-            foreground: "#83E7DA",
-          },
-        },
-        {
-          name: "String",
-          scope: [
-            "string",
-            "storage.modifier.package",
-            "storage.modifier.import",
-            "constant.other.symbol",
-            "constant.other.key",
-            "entity.other.inherited-class",
-            "markup.heading",
-            "markup.inserted.git_gutter",
-            "meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js",
-          ],
-          settings: {
-            foreground: "#CDE783",
-          },
-        },
-        {
-          name: "Type, Class",
-          scope: [
-            "entity.name",
-            "storage.type.primitive",
-            "support.class",
-            "support.orther.namespace.use.php",
-            "entity.other.attribute-name.class",
-            "meta.use.php",
-            "support.other.namespace.php",
-            "markup.changed.git_gutter",
-            "support.type.primitive",
-            "support.type.sys-types",
-            "meta.attribute.class string.quoted",
-            "storage.type.generic",
-            "meta.definition.variable storage.type",
-            "meta.class.body storage.type",
-            "entity.other.attribute-name.pseudo-class",
-            "entity.other.inherited-class",
-            "punctuation.bracket.square.java",
-          ],
-          settings: {
-            foreground: "#E7CD83",
-          },
-        },
-        {
-          name: "Attributes",
-          scope: ["entity.other.attribute-name"],
-          settings: {
-            foreground: "#E783DA",
-          },
-        },
-        {
-          name: "Annotation, Decorators",
-          scope: [
-            "storage.type.annotation",
-            "entity.name.function.decorator",
-            "meta.decorator entity.name.function",
-            "tag.decorator",
-          ],
-          settings: {
-            foreground: "#E79783",
-          },
-        },
-        {
-          name: "External Methods",
-          scope: ["variable.language"],
-        },
-        {
-          name: "Invalid",
-          scope: ["invalid", "invalid.illegal"],
-          settings: {
-            fontStyle: "underline",
-            foreground: "#FF5370",
-          },
-        },
-        {
-          name: "(Inc/Dec)rement Operators",
-          scope: [
-            "keyword.operator.increment",
-            "keyword.operator.decrement",
-            "keyword.operator.increment-decrement",
-          ],
-          settings: {
-            foreground: "#83E7DA",
-          },
-        },
-        {
-          name: "Arithmetic Operators",
-          scope: ["keyword.operator.arithmetic"],
-          settings: {
-            foreground: "#E783A4",
-          },
-        },
-        {
-          name: "Relacional and Comparison Operators",
-          scope: ["keyword.operator.comparison"],
-          settings: {
-            foreground: "#E783DA",
-          },
-        },
-        {
-          name: "Bitwise Operators",
-          scope: ["keyword.operator.bitwise"],
-          settings: {
-            foreground: "#CDE783",
-          },
-        },
-        {
-          name: "Markdown Text",
-          scope: [
-            "text.html.markdown",
-            "punctuation.definition.list_item.markdown",
-          ],
-          settings: {
-            foreground: "#E3E5E7",
-          },
-        },
-        {
-          name: "Markdown - Ponctuation",
-          scope: [
-            "markdown.heading",
-            "markup.heading | markup.heading entity.name",
-            "markup.heading.markdown punctuation.definition.heading.markdown",
-          ],
-          settings: {
-            foreground: "#6A737D",
-          },
-        },
-        {
-          name: "Markup - Heading",
-          scope: ["markup.heading entity.name"],
-          settings: {
-            foreground: "#E7CD83",
-          },
-        },
-        {
-          name: "Markup - Link Title",
-          scope: ["string.other.link.title"],
-          settings: {
-            foreground: "#83E7DA",
-          },
-        },
-        {
-          name: "Markup - Link",
-          scope: ["markup.underline.link"],
-          settings: {
-            foreground: "#CDE783",
-          },
-        },
-        {
-          name: "Markup - Italic",
-          scope: ["markup.italic"],
-          settings: {
-            fontStyle: "italic",
-            foreground: "#E79783",
-          },
-        },
-        {
-          name: "Markup - Bold",
-          scope: ["markup.bold", "markup.bold string"],
-          settings: {
-            fontStyle: "bold",
-            foreground: "#E79783",
-          },
-        },
-        {
-          name: "Markup - Bold-Italic",
-          scope: [
-            "markup.bold markup.italic",
-            "markup.italic markup.bold",
-            "markup.quote markup.bold",
-            "markup.bold markup.italic string",
-            "markup.italic markup.bold string",
-            "markup.quote markup.bold string",
-          ],
-          settings: {
-            fontStyle: "bold",
-            foreground: "#E79783",
-          },
-        },
-        {
-          name: "Markup - Underline",
-          scope: ["markup.underline"],
-          settings: {
-            fontStyle: "underline",
-            foreground: "#E79783",
-          },
-        },
-        {
-          name: "Markdown - Inline Code",
-          scope: ["markup.inline.raw.string"],
-          settings: {
-            foreground: "#E783A4",
-          },
-        },
-        ...jsonTokenLevels(schema.json.keyLevels)
+        ],
+        // json.keyLevels
+        ...jsonTokenLevels(schema.json.keyLevels),
       ],
       colors: {
-        "terminal.foreground": schema.text,
+        "terminal.foreground": schema.ui.text,
         "terminal.background": schema.terminal.background,
         // "terminal.border": "#FF00FF",
         // "terminal.dropBackground": "#FF00FF",
         // "terminal.tab.activeBoarder": "#FF00FF",
         "terminal.selectionBackground": schema.terminal.selection,
         "terminalCursor.background": schema.terminal.selection,
-        "terminalCursor.foreground": schema.text,
+        "terminalCursor.foreground": schema.ui.text,
         "terminal.ansiBlack": schema.terminal.black,
         "terminal.ansiBrightBlack": schema.terminal.blackBright,
         "terminal.ansiBlue": schema.terminal.blue,
@@ -642,3 +442,29 @@ module.exports = (schemas) => {
     },
   ]);
 };
+
+/** Returns the token matchers for json keys up to deph 250.
+ *
+ * @param {string[]} colors json key levels colors
+ * @returns {[]} a list of json key level tokens
+ */
+function jsonTokenLevels(colors) {
+  const levelMatcher = (level) =>
+    new Array(level + 1).fill("meta.structure.dictionary.json").join(" ");
+
+  const scopes = (index) => {
+    const scopeMatchers = [];
+    for (let level = index; level < 250; level += colors.length) {
+      scopeMatchers.push(
+        `source.json ${levelMatcher(level)} support.type.property-name`
+      );
+    }
+    return scopeMatchers;
+  };
+
+  return colors.map((color, index) => ({
+    name: `JSON Key Level ${index}`,
+    scope: scopes(index),
+    settings: { foreground: color },
+  }));
+}
