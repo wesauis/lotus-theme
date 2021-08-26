@@ -1,6 +1,6 @@
 import { stream as glob } from "fast-glob";
 import { copyFile, mkdir, rm, writeFile } from "fs/promises";
-import { dirname } from "path";
+import { basename, dirname } from "path";
 import { Config } from "./config";
 import { infoOf } from "./logger";
 import { Schema } from "./schema";
@@ -23,6 +23,7 @@ export async function assemble(id: string, schema: Schema, config: Config) {
     if (resouce instanceof Buffer) continue;
     const outfile = `${outdir}/${resouce}`;
 
+    if (basename(resouce).startsWith('__')) continue;
     const isAsset = config.assets.includes(resouce);
     const isTemplate = resouce.endsWith(".js");
 

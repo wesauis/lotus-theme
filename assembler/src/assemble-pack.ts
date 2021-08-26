@@ -2,7 +2,7 @@ import { copyFile, mkdir, rm, writeFile } from "fs/promises";
 import { stream as glob } from "fast-glob";
 import { Config } from "./config";
 import { Schema } from "./schema";
-import { dirname } from "path";
+import { basename, dirname } from "path";
 import { GenPack } from "./template";
 import { infoOf } from "./logger";
 
@@ -26,6 +26,7 @@ export async function assemblePack(
     if (resouce instanceof Buffer) continue;
     const outfile = `${config.outdir}/${resouce}`;
 
+    if (basename(resouce).startsWith('__')) continue;
     const isAsset = config.assets.includes(resouce);
     const isTemplate = resouce.endsWith(".js");
 
