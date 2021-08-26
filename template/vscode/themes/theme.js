@@ -1,12 +1,9 @@
-const staticTokens = [
-  {
-    name: "URL",
-    scope: ["*url*", "*link*", "*uri*"],
-    settings: {
-      fontStyle: "underline",
-    },
-  },
-];
+const staticTokens = require("./tokens/__static.js");
+const typeTokens = require("./tokens/__types.js");
+const operatorTokens = require("./tokens/__operators.js");
+const languageTokens = require("./tokens/__language.js");
+const literalTokens = require("./tokens/__literals.js");
+const markdownTokens = require("./tokens/__markdown.js");
 
 /** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
@@ -33,241 +30,19 @@ module.exports = (schemas) => {
         // TODO key levels for code (js/obj,py/dict,yaml)
         // TODO regex highlight
         ...staticTokens,
-        // tokens.types
-        ...[
-          {
-            name: "Function Declarations",
-            scope: [
-              "entity.name.function",
-              "variable.function",
-              "support.function",
-              "support.constant.handlebars",
-              "source.powershell variable.other.member",
-              "keyword.other.special-method",
-              "entity.name.operator.custom-literal", // See https://en.cppreference.com/w/cpp/language/user_literal
-            ],
-            settings: {
-              foreground: schema.tokens.types.function,
-            },
-          },
-          {
-            name: "Types Declaration and References",
-            scope: [
-              "meta.return-type",
-              "support.class",
-              "support.type",
-              "entity.name.type",
-              "entity.name.namespace",
-              "entity.other.attribute",
-              "entity.name.scope-resolution",
-              "entity.name.class",
-              "storage.type.numeric.go",
-              "storage.type.byte.go",
-              "storage.type.boolean.go",
-              "storage.type.string.go",
-              "storage.type.uintptr.go",
-              "storage.type.error.go",
-              "storage.type.rune.go",
-              "storage.type.cs",
-              "storage.type.generic.cs",
-              "storage.type.modifier.cs",
-              "storage.type.variable.cs",
-              "storage.type.annotation.java",
-              "storage.type.generic.java",
-              "storage.type.java",
-              "storage.type.object.array.java",
-              "storage.type.primitive.array.java",
-              "storage.type.primitive.java",
-              "storage.type.token.java",
-              "storage.type.groovy",
-              "storage.type.annotation.groovy",
-              "storage.type.parameters.groovy",
-              "storage.type.generic.groovy",
-              "storage.type.object.array.groovy",
-              "storage.type.primitive.array.groovy",
-              "storage.type.primitive.groovy",
-            ],
-            settings: {
-              foreground: schema.tokens.types.type,
-            },
-          },
-          {
-            name: "Variable",
-            scope: [
-              "variable.other.readwrite",
-              "entity.name.variable",
-              // "variable",
-              // "variable.parameter",
-              // "meta.tag",
-              // "meta.object-literal.key string.quoted",
-              // "string constant.other.placeholder",
-              // "meta.definition.variable punctuation.bracket",
-              // "meta.function-call.arguments",
-              // "variable.other.definition",
-              // "variable.other.object.property",
-              // "meta.definition.variable variable.other"
-            ],
-            settings: {
-              foreground: schema.tokens.types.variable,
-            },
-          },
-        ],
-        // tokens.operators
-        ...[
-          {
-            name: "Arithmetic Operators",
-            scope: ["keyword.operator.arithmetic"],
-            settings: {
-              foreground: schema.tokens.operators.arithmetic,
-            },
-          },
-          {
-            name: "Bitwise Operators",
-            scope: ["keyword.operator.bitwise"],
-            settings: {
-              foreground: schema.tokens.operators.bitwise,
-            },
-          },
-          {
-            name: "Relacional and Comparison Operators",
-            scope: ["keyword.operator.relational"],
-            settings: {
-              foreground: schema.tokens.operators.comparison,
-            },
-          },
-          {
-            name: "IncDecrement Operators",
-            scope: [
-              "keyword.operator.increment",
-              "keyword.operator.decrement",
-              "keyword.operator.increment-decrement",
-            ],
-            settings: {
-              foreground: schema.tokens.operators.incdecrement,
-            },
-          },
-          {
-            name: "Nullcheck, Interpolation Exp",
-            scope: [
-              "keyword.operator.nulltype",
-              "string.interpolated.expression",
-              "constant.character.format.placeholder.other.python",
-              "punctuation.definition.template-expression",
-              "punctuation.accessor.optional",
-            ],
-            settings: {
-              foreground: schema.tokens.operators.nullcheck,
-            },
-          },
-        ],
-        // tokens.language
-        ...[
-          {
-            name: "BuiltIn",
-            scope: ["support.constant"],
-            settings: {
-              foreground: schema.tokens.language.builtin,
-            },
-          },
-          {
-            name: "Comment",
-            scope: [
-              "comment",
-              "string.quoted.docstring",
-              "punctuation.definition.comment",
-            ],
-            settings: {
-              foreground: schema.tokens.language.comment,
-            },
-          },
-          {
-            name: "Language Constants (true, false...)",
-            scope: "constant.language",
-            settings: {
-              foreground: schema.tokens.language.constant,
-            },
-          },
-          {
-            name: "Invalid",
-            scope: ["invalid", "invalid.illegal"],
-            settings: {
-              foreground: schema.tokens.language.invalid,
-              fontStyle: "italic bold underline",
-            },
-          },
-          {
-            name: "Keyword",
-            scope: [
-              "keyword",
-              "storage.type",
-              "storage.modifier",
-              // "fenced_code.block.language.markdown",
-              // "punctuation.definition.binding-pattern",
-              // "punctuation.accessor",
-              // "punctuation.definition.parameters.varargs",
-              "keyword.control",
-              "source.cpp keyword.operator.new",
-              "keyword.operator.delete",
-              "keyword.other.using",
-              "keyword.other.operator",
-              "entity.name.operator",
-            ],
-            settings: {
-              foreground: schema.tokens.language.keyword,
-            },
-          },
-          {
-            name: "Punctuation",
-            scope: [
-              "punctuation",
-              "punctuation.definition.string string",
-              // TODO dart string interpolated string
-              // "punctuation.definition.tag",
-              // "punctuation.separator.inheritance.php",
-              // "punctuation.definition.tag.html",
-              // "punctuation.definition.tag.begin.html",
-              // "punctuation.definition.tag.end.html",
-              // "punctuation.section.embedded",
-              // "constant.other.color",
-              // "keyword.other.template",
-              // "keyword.other.substitution",
-            ],
-            settings: {
-              foreground: schema.tokens.language.punctuation,
-            },
-          },
-        ],
-        // tokens.literals
-        ...[
-          {
-            name: "String Literal",
-            scope: [
-              "string",
-              "meta.embedded.assembly",
-              "string meta.embedded.assembly",
-              "storage.modifier.import",
-            ],
-            settings: {
-              foreground: schema.tokens.literals.string,
-            },
-          },
-          {
-            name: "Numeric Literal",
-            scope: ["constant.numeric"],
-            settings: {
-              foreground: schema.tokens.literals.number,
-            },
-          },
-        ],
-        // json.keyLevels
+        ...typeTokens(schema),
+        ...operatorTokens(schema),
+        ...languageTokens(schema),
+        ...literalTokens(schema),
+        ...markdownTokens(schema),
         ...jsonTokenLevels(schema.json.keyLevels),
       ],
       colors: {
         "terminal.foreground": schema.ui.text,
         "terminal.background": schema.terminal.background,
-        // "terminal.border": "#FF00FF",
-        // "terminal.dropBackground": "#FF00FF",
-        // "terminal.tab.activeBoarder": "#FF00FF",
+        // "terminal.border": "#F0F",
+        // "terminal.dropBackground": "#F0F",
+        // "terminal.tab.activeBoarder": "#F0F",
         "terminal.selectionBackground": schema.terminal.selection,
         "terminalCursor.background": schema.terminal.selection,
         "terminalCursor.foreground": schema.ui.text,
@@ -279,8 +54,8 @@ module.exports = (schemas) => {
         "terminal.ansiBrightCyan": schema.terminal.cyanBright,
         "terminal.ansiGreen": schema.terminal.green,
         "terminal.ansiBrightGreen": schema.terminal.greenBright,
-        "terminal.ansiPurple": schema.terminal.purple,
-        "terminal.ansiBrightPurple": schema.terminal.purpleBright,
+        "terminal.ansiMagenta": schema.terminal.magenta,
+        "terminal.ansiBrightMagenta": schema.terminal.magentaBright,
         "terminal.ansiRed": schema.terminal.red,
         "terminal.ansiBrightRed": schema.terminal.redBright,
         "terminal.ansiWhite": schema.terminal.white,
