@@ -16,7 +16,7 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Relacional and Comparison Operators",
-    scope: ["keyword.operator.relational"],
+    scope: ["keyword.operator.relational", "keyword.operator.comparison"],
     settings: {
       foreground: operators.comparison,
     },
@@ -33,16 +33,23 @@ module.exports = ({ tokens: { operators } }) => [
     },
   },
   {
-    name: "Nullcheck, Interpolation Exp",
+    name: "Nullcheck",
+    scope: ["keyword.operator.nulltype", "punctuation.accessor.optional"],
+    settings: {
+      foreground: operators.nullcheck,
+    },
+  },
+  {
+    name: "Placeholder",
     scope: [
-      "keyword.operator.nulltype",
       "string.interpolated.expression",
       "constant.character.format.placeholder.other.python",
       "punctuation.definition.template-expression",
-      "punctuation.accessor.optional",
+      "constant.other.placeholder",
+      "punctuation.definition.interpolation",
     ],
     settings: {
-      foreground: operators.nullcheck,
+      foreground: operators.placeholder,
     },
   },
 ];

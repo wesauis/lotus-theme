@@ -88,4 +88,37 @@ module.exports = ({ tokens: { language } }) => [
       foreground: language.punctuation,
     },
   },
+  // {
+  //   name: "Variable",
+  //   scope: [
+  //     // "variable.parameter",
+  //     // "variable.other.readwrite",
+  //     // "meta.block variable.other",
+  //     // "entity.name.variable",
+  //     // "support.type.property-name",
+      
+  //     // "string constant.other.placeholder",
+  //     // "meta.function-call.arguments",
+  //     // "variable.other.definition",
+  //     // "meta.definition.variable variable.other",
+  //     // "meta.tag",
+  //     // "meta.object-literal.key string.quoted",
+  //     // "string constant.other.placeholder",
+  //     // "meta.definition.variable punctuation.bracket",
+  //     // "meta.function-call.arguments",
+  //     // "variable.other.definition",
+  //     // "variable.other.object.property",
+  //     // "meta.definition.variable variable.other"
+  //   ],
+  //   settings: {
+  //     foreground: language.variable,
+  //   },
+  // },
+  // // {
+  // //   name: "Parameter",
+  // //   scope: [],
+  // //   settings: {
+  // //     foreground: language.parameter,
+  // //   },
+  // // },
 ];
