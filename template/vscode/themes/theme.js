@@ -4,6 +4,7 @@ const operatorTokens = require("./tokens/__operators.js");
 const languageTokens = require("./tokens/__language.js");
 const literalTokens = require("./tokens/__literals.js");
 const markdownTokens = require("./tokens/__markdown.js");
+const keyLevels = require("./tokens/__key_levels.js");
 
 /** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
@@ -20,22 +21,36 @@ module.exports = (schemas) => {
         function: schema.tokens.types.function,
         interface: schema.tokens.types.interface,
         namespace: schema.tokens.types.namespace,
-        property: schema.tokens.types.property,
         struct: schema.tokens.types.struct,
         type: schema.tokens.types.type,
-        variable: schema.tokens.types.variable,
+        variable: schema.tokens.language.variable,
         "variable.defaultLibrary": schema.tokens.language.builtin,
       },
       tokenColors: [
-        // TODO key levels for code (js/obj,py/dict,yaml)
+        // TODO key levels for code (py/dict,yaml,scssmap)
         // TODO regex highlight
+        // TODO DART DICT punctuation/levels
+        // TODO string template parenthesis
+        // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
+        // TODO samples for all tested languages
         ...staticTokens,
         ...typeTokens(schema),
         ...operatorTokens(schema),
         ...languageTokens(schema),
         ...literalTokens(schema),
         ...markdownTokens(schema),
-        ...jsonTokenLevels(schema.json.keyLevels),
+        ...keyLevels("JSON", schema.tokens.keyLevels, {
+          begin: "source.json",
+          repeat: "meta.structure.dictionary.json",
+          end: "support.type.property-name",
+          levels: 250,
+        }),
+        ...keyLevels("JS/TS Object Literal", schema.tokens.keyLevels, {
+          begin: ["source.js", "source.ts"], // ts or js
+          repeat: "meta.objectliteral meta.object.member",
+          end: ["meta.object-literal.key", "meta.object-literal.key string"], // quoted or not
+          levels: 16,
+        }),
       ],
       colors: {
         "terminal.foreground": schema.ui.text,
@@ -217,29 +232,3 @@ module.exports = (schemas) => {
     },
   ]);
 };
-
-/** Returns the token matchers for json keys up to deph 250.
- *
- * @param {string[]} colors json key levels colors
- * @returns {[]} a list of json key level tokens
- */
-function jsonTokenLevels(colors) {
-  const levelMatcher = (level) =>
-    new Array(level + 1).fill("meta.structure.dictionary.json").join(" ");
-
-  const scopes = (index) => {
-    const scopeMatchers = [];
-    for (let level = index; level < 250; level += colors.length) {
-      scopeMatchers.push(
-        `source.json ${levelMatcher(level)} support.type.property-name`
-      );
-    }
-    return scopeMatchers;
-  };
-
-  return colors.map((color, index) => ({
-    name: `JSON Key Level ${index}`,
-    scope: scopes(index),
-    settings: { foreground: color },
-  }));
-}
