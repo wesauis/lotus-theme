@@ -18,4 +18,11 @@ module.exports = ({ tokens: { literals } }) => [
       foreground: literals.number,
     },
   },
+  {
+    name: "Unit",
+    scope: ["keyword.other.unit"],
+    settings: {
+      foreground: literals.unit,
+    },
+  },
 ];

@@ -8,36 +8,53 @@
   },
 
   "tokens": {
-    "types": {
-      "class": "#E7CD83",
-      "enum": "#E7CD83",
-      "function": "#94C8EA",
-      "interface": "#E7CD83",
-      "namespace": "#E7CD83",
-      "property": "#E1E4E8",
-      "struct": "#E7CD83",
-      "type": "#E7CD83",
-      "variable": "#E1E4E8"
+    "keyLevels": [
+      "#E87DC4",
+      "#E87D7D",
+      "#E8A17D",
+      "#E8C47D",
+      "#E8E87D",
+      "#C4E87D",
+      "#7DE8C4",
+      "#7DA1E8",
+      "#A17DE8",
+      "#C47DE8"
+    ],
+    "language": {
+      "builtin": "#8CF2E1",
+      "comment": "#6A737D",
+      "constant": "#E67FD9",
+      "importid": "#CDE783",
+      "invalid": "#FF5370",
+      "keyword": "#BF83E7",
+      "parameter": "#E7E6E4",
+      "property": "#E7E6E4",
+      "punctuation": "#6A737D",
+      "variable": "#E7E6E4",
+      "vendored": "#E7E6E4"
+    },
+    "literals": {
+      "number": "#8389E7",
+      "string": "#CDE783",
+      "unit": "#BF83E7"
     },
     "operators": {
       "arithmetic": "#FEAC67",
       "bitwise": "#CDE783",
       "comparison": "#E67FD9",
       "incdecrement": "#8CF2E1",
-      "nullcheck": "#E783A4"
+      "nullcheck": "#E783A4",
+      "placeholder": "#E783A4"
     },
-    "language": {
-      "builtin": "#7FBDE6",
-      "comment": "#6A737D",
-      "constant": "#E79A83",
-      "invalid": "#FF5370",
-      "keyword": "#BF83E7",
-      "punctuation": "#6A737D",
-      "importid": "#CDE783"
-    },
-    "literals": {
-      "number": "#8389E7",
-      "string": "#CDE783"
+    "types": {
+      "class": "#E7CD83",
+      "enum": "#E7CD83",
+      "function": "#94C8EA",
+      "interface": "#E7CD83",
+      "namespace": "#E7CD83",
+      "struct": "#E7CD83",
+      "tag": "#BF83E7",
+      "type": "#E7CD83"
     }
   },
 
@@ -64,24 +81,12 @@
     "magentaBright": "#CF67E4",
     "red": "#D7425B",
     "redBright": "#E06C7F",
-    "white": "#C4BFBA",
-    "whiteBright": "#E8E6E3",
+    "white": "#E7E6E4",
+    "whiteBright": "#E9E8E5",
     "yellow": "#DDB43C",
     "yellowBright": "#E4C567",
     "background": "#1C2022",
     "selection": "#121516"
-  },
-
-  "json": {
-    "keyLevels": [
-      "#B583E7",
-      "#E783C2",
-      "#E78397",
-      "#E79A83",
-      "#E78483",
-      "#E783AD",
-      "#CB83E7"
-    ]
   },
 
   "unused": [

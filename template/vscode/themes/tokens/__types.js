@@ -1,6 +1,13 @@
 /** @type {import("../../../../assembler/src/template.js").GenPart} */
 module.exports = ({ tokens: { types } }) => [
   {
+    name: "Tag",
+    scope: ["entity.name.tag", "meta.tag.sgml"],
+    settings: {
+      foreground: types.tag,
+    },
+  },
+  {
     name: "Function Declarations",
     scope: [
       "entity.name.function",
@@ -24,6 +31,7 @@ module.exports = ({ tokens: { types } }) => [
       "entity.name.type",
       "entity.name.namespace",
       "entity.other.attribute",
+      "entity.other.attribute-name.class",
       "entity.name.scope-resolution",
       "entity.name.class",
       "storage.type.numeric.go",
@@ -57,24 +65,10 @@ module.exports = ({ tokens: { types } }) => [
     },
   },
   {
-    name: "Variable",
-    scope: [
-      "variable",
-      "variable.parameter",
-      "variable.other.readwrite",
-      "meta.block variable.other",
-      "entity.name.variable",
-      // "meta.tag",
-      // "meta.object-literal.key string.quoted",
-      // "string constant.other.placeholder",
-      // "meta.definition.variable punctuation.bracket",
-      // "meta.function-call.arguments",
-      // "variable.other.definition",
-      // "variable.other.object.property",
-      // "meta.definition.variable variable.other"
-    ],
+    name: "Interface, Pseudo-Class",
+    scope: ["entity.other.attribute-name.pseudo-class"],
     settings: {
-      foreground: types.variable,
+      foreground: types.interface,
     },
   },
 ];

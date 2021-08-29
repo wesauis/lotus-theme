@@ -2,9 +2,16 @@
 module.exports = ({ tokens: { language } }) => [
   {
     name: "BuiltIn",
-    scope: ["support.constant"],
+    scope: ["support.constant", "support.type.object.module"],
     settings: {
       foreground: language.builtin,
+    },
+  },
+  {
+    name: "Vendored",
+    scope: ["support.type.vendored.property-name"],
+    settings: {
+      foreground: language.vendored,
     },
   },
   {
@@ -19,15 +26,15 @@ module.exports = ({ tokens: { language } }) => [
     },
   },
   {
-    name: "Language Constants (true, false...)",
-    scope: "constant.language",
+    name: "Language Constants",
+    scope: ["constant.language", "support.constant.property-value"],
     settings: {
       foreground: language.constant,
     },
   },
   {
     name: "Import ID",
-    scope: ["storage.modifier.import"],
+    scope: ["storage.modifier.package", "storage.modifier.import"],
     settings: {
       foreground: language.importid,
     },

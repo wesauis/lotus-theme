@@ -19,28 +19,28 @@ module.exports = ({ markdown, ui, tokens: { language } }) => [
     },
   },
   {
-    name: "Markup - Heading",
+    name: "Markdown - Heading",
     scope: ["markup.heading entity.name"],
     settings: {
       foreground: markdown.heading,
     },
   },
   {
-    name: "Markup - Link",
+    name: "Markdown - Link",
     scope: ["markup.underline.link"],
     settings: {
       foreground: markdown.link,
     },
   },
   {
-    name: "Markup - Link Title",
+    name: "Markdown - Link Title",
     scope: ["string.other.link.title"],
     settings: {
       foreground: markdown.linkTitle,
     },
   },
   {
-    name: "Markup - Italic",
+    name: "Markdown - Italic",
     scope: ["markup.italic"],
     settings: {
       fontStyle: "italic",
@@ -48,7 +48,7 @@ module.exports = ({ markdown, ui, tokens: { language } }) => [
     },
   },
   {
-    name: "Markup - Bold",
+    name: "Markdown - Bold",
     scope: ["markup.bold", "markup.bold string"],
     settings: {
       fontStyle: "bold",
@@ -56,7 +56,7 @@ module.exports = ({ markdown, ui, tokens: { language } }) => [
     },
   },
   {
-    name: "Markup - Bold-Italic",
+    name: "Markdown - Bold-Italic",
     scope: [
       "markup.bold markup.italic",
       "markup.italic markup.bold",
@@ -71,7 +71,7 @@ module.exports = ({ markdown, ui, tokens: { language } }) => [
     },
   },
   {
-    name: "Markup - Underline",
+    name: "Markdown - Underline",
     scope: ["markup.underline"],
     settings: {
       fontStyle: "underline",
