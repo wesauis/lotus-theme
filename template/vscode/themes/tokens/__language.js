@@ -72,6 +72,7 @@ module.exports = ({ tokens: { language } }) => [
     name: "Punctuation",
     scope: [
       "punctuation",
+      "punctuation.definition",
       "punctuation.definition.string string",
       // TODO dart string interpolated string
       // "punctuation.definition.tag",
@@ -88,37 +89,46 @@ module.exports = ({ tokens: { language } }) => [
       foreground: language.punctuation,
     },
   },
-  // {
-  //   name: "Variable",
-  //   scope: [
-  //     // "variable.parameter",
-  //     // "variable.other.readwrite",
-  //     // "meta.block variable.other",
-  //     // "entity.name.variable",
-  //     // "support.type.property-name",
-      
-  //     // "string constant.other.placeholder",
-  //     // "meta.function-call.arguments",
-  //     // "variable.other.definition",
-  //     // "meta.definition.variable variable.other",
-  //     // "meta.tag",
-  //     // "meta.object-literal.key string.quoted",
-  //     // "string constant.other.placeholder",
-  //     // "meta.definition.variable punctuation.bracket",
-  //     // "meta.function-call.arguments",
-  //     // "variable.other.definition",
-  //     // "variable.other.object.property",
-  //     // "meta.definition.variable variable.other"
-  //   ],
-  //   settings: {
-  //     foreground: language.variable,
-  //   },
-  // },
-  // // {
-  // //   name: "Parameter",
-  // //   scope: [],
-  // //   settings: {
-  // //     foreground: language.parameter,
-  // //   },
-  // // },
+  {
+    name: "Variable",
+    scope: [
+      // TODO HOW TO FIX THIS?
+      // "variable - variable.other.property",
+      "variable.parameter",
+      "variable.interpolation",
+      // "variable.other.readwrite",
+      "meta.block variable.other",
+      "entity.name.variable",
+      "support.type.property-name",
+      "entity.other.attribute-name",
+      "string.quoted variable.other",
+
+      // "string constant.other.placeholder",
+      // "meta.function-call.arguments",
+      // "variable.other.definition",
+      // "meta.definition.variable variable.other",
+      // "meta.tag",
+      // "meta.object-literal.key string.quoted",
+      // "string constant.other.placeholder",
+      // "meta.definition.variable punctuation.bracket",
+      // "meta.function-call.arguments",
+      // "variable.other.definition",
+      // "variable.other.object.property",
+      // "meta.definition.variable variable.other"
+    ],
+    settings: {
+      foreground: language.variable,
+    },
+  },
+  {
+    name: "Braces",
+    scope: [
+      "meta.brace",
+      "punctuation.definition.parameters",
+      "punctuation.definition.block",
+    ],
+    settings: {
+      foreground: language.brace,
+    },
+  },
 ];

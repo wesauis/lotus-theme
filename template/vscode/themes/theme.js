@@ -27,12 +27,12 @@ module.exports = (schemas) => {
         "variable.defaultLibrary": schema.tokens.language.builtin,
       },
       tokenColors: [
-        // TODO key levels for code (py/dict,yaml,scssmap)
+        // TODO key levels for code (yaml,scssmap)
         // TODO regex highlight
-        // TODO DART DICT punctuation/levels
-        // TODO string template parenthesis
+        // TODO string template parenthesis (test1: html.js vs js.html)
         // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
         // TODO samples for all tested languages
+        // TODO operators: php, js, ts, py, rust, go, java
         ...staticTokens,
         ...typeTokens(schema),
         ...operatorTokens(schema),
@@ -48,9 +48,12 @@ module.exports = (schemas) => {
         ...keyLevels("JS/TS Object Literal", schema.tokens.keyLevels, {
           begin: ["source.js", "source.ts"], // ts or js
           repeat: "meta.objectliteral meta.object.member",
-          end: ["meta.object-literal.key", "meta.object-literal.key string"], // quoted or not
+          end: ["meta.object-literal.key", "meta.object-literal.key string", "variable"], // variable, quoted string or not,
           levels: 16,
         }),
+        // TODO python dict doesn't have tokens that allow keylevels for dictionaries
+        // TODO dart has the same exact problem
+
       ],
       colors: {
         "terminal.foreground": schema.ui.text,
