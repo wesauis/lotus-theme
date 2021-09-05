@@ -2,7 +2,6 @@
 
 - I'm ignoring the comma operator, for now...
 - maybe assignment operators can be colored based on the operation
-- c pointers/ref needs a bit of time
 
 ```js
 // Arithmetic
@@ -89,7 +88,7 @@ f'{123}'
 !;||;&&;
 // Bitwise
 ~;&;|;^;<<;>>;
-// varef
+// Address 
 *_;&_;_->_;_._;
 ```
 ```java
@@ -110,6 +109,8 @@ f'{123}'
 instanceof;
 // Bitwise
 ~;<<;>>;>>>;&;^;|;
+// Placeholder
+String.format("%.2d", 0.00054);
 ```
 ```rust
 // Arithmetic
@@ -124,7 +125,7 @@ instanceof;
 !;||;&&;true&false;true|false;
 // Bitwise
 ~;<<;>>;>>>;&;^;|;!0;
-// varef
+// Address 
 & _;&mut _; *_; *mut _;
 // ErrorCheck (#NullCheck)
 None?;
@@ -167,7 +168,7 @@ _ is int;_ is! int;
 typeof(_);is;
 // Bitwise
 &;|;^;~;<<;>>;
-// varef
+// Address 
 &_;*a;
 // NullCheck
 _?._;_?[_];_!;
@@ -191,7 +192,7 @@ $"{123}"
 _ instanceof string;
 // Bitwise
 &;^;|;<<;>>;
-// varef
+// Address 
 &_;
 // Concat
 .;
@@ -201,4 +202,23 @@ _ instanceof string;
 $fd = @file('noop') or die('file not found');
 // Placeholder
 "$a{$a}"
+```
+```go
+// Arithmetic
++ - * / %
+// Unary
++1 -1 ++ --
+// Assignment
+= := += -= *= /= %= <<= >>= &= 
+^= |=
+// Comparison / Relational
+== != < > <= >=
+// Logical
+! || &&
+// Bitwise
+& | ^ &^ << >>
+// Placeholder
+fmt.Sprintf("%d", n)
+// Address 
+&_ *_ &*_ <-
 ```

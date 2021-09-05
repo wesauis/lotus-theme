@@ -13,6 +13,7 @@ module.exports = ({ tokens: { literals } }) => [
   },
   {
     name: "Numeric Literal",
+    // TODO Lightier?
     scope: ["constant.numeric"],
     settings: {
       foreground: literals.number,

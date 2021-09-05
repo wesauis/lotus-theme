@@ -51,7 +51,7 @@
       "bitwise":"#97D279",
       "nullcheck":"#E06C7F",
       "membership":"#BF83E7",
-      "varef":"#E783A4",
+      "address":"#E783A4",
       "concat":"#BF83E7",
       "exec":"#BF83E7",
       "placeholder": "#E783A4"

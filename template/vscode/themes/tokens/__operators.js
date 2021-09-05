@@ -81,7 +81,7 @@ module.exports = ({ tokens: { operators } }) => [
   {
     name: "Bitwise",
     // TODO c,rust,php
-    scope: ["keyword.operator.bitwise"],
+    scope: ["keyword.operator.bitwise", "keyword.operator.arithmetic.bitwise"],
     settings: {
       foreground: operators.bitwise,
     },
@@ -109,16 +109,18 @@ module.exports = ({ tokens: { operators } }) => [
     },
   },
   {
-    name: "Varef",
+    name: "Address",
     // TODO c,c#
     scope: [
       "keyword.operator.borrow.and",
       "keyword.operator.dereference",
       "storage.modifier.reference",
       "punctuation.definition.variable",
+      "keyword.operator.address",
+      "keyword.operator.channel",
     ],
     settings: {
-      foreground: operators.varef,
+      foreground: operators.address,
     },
   },
   {
@@ -139,7 +141,7 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Placeholder",
-    // TODO dart
+    // TODO dart,java
     scope: [
       "string.interpolated.expression",
       "constant.character.format.placeholder.other.python",

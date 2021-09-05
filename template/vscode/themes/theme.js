@@ -27,12 +27,10 @@ module.exports = (schemas) => {
         "variable.defaultLibrary": schema.tokens.language.builtin,
       },
       tokenColors: [
-        // TODO key levels for code (yaml,scssmap)
         // TODO regex highlight
         // TODO string template parenthesis (test1: html.js vs js.html)
         // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
         // TODO samples for all tested languages
-        // TODO operators: php, js, ts, py, rust, go, java
         ...staticTokens,
         ...typeTokens(schema),
         ...operatorTokens(schema),
@@ -40,20 +38,27 @@ module.exports = (schemas) => {
         ...literalTokens(schema),
         ...markdownTokens(schema),
         ...keyLevels("JSON", schema.tokens.keyLevels, {
-          begin: "source.json",
-          repeat: "meta.structure.dictionary.json",
+          source: "json",
+          repeat: "meta.structure.dictionary",
           end: "support.type.property-name",
-          levels: 250,
+          levels: 50,
         }),
         ...keyLevels("JS/TS Object Literal", schema.tokens.keyLevels, {
-          begin: ["source.js", "source.ts"], // ts or js
+          // TODO `{[<keyvar>]: {}}` conflict with semantic.variable
+          source: "js|ts",
           repeat: "meta.objectliteral meta.object.member",
           end: ["meta.object-literal.key", "meta.object-literal.key string", "variable"], // variable, quoted string or not,
           levels: 16,
         }),
-        // TODO python dict doesn't have tokens that allow keylevels for dictionaries
-        // TODO dart has the same exact problem
-
+        ...keyLevels("SCSS Map", schema.tokens.keyLevels, {
+          // TODO string value has the wrong color
+          source: "scss|css.scss",
+          repeat: "meta.definition.variable.map",
+          end: ["string.quoted", "support.type.map.key"],
+          levels: 16,
+        }),
+        // TODO tokenize keylevels: py,php,c#,dart,yaml,go
+        // TODO more realistic keylevel test
       ],
       colors: {
         "terminal.foreground": schema.ui.text,

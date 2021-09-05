@@ -5,7 +5,7 @@ const repeat = (count, fill) => new Array(count).fill(fill).join(" ");
  * @param {string} name matcher name
  * @param {string[]} colors an array with the colors for each level
  * @param {{
- *  begin: string | string[];
+ *  source: string;
  *  repeat: string;
  *  end: string | string[];
  *  levels: number;
@@ -13,8 +13,10 @@ const repeat = (count, fill) => new Array(count).fill(fill).join(" ");
  * @returns {[]} a list of key level token matchers
  */
 module.exports = (name, colors, scope) => {
-  if (typeof scope.begin === "string") scope.begin = [scope.begin];
   if (typeof scope.end === "string") scope.end = [scope.end];
+  scope.source = scope.source
+    .split("|")
+    .flatMap((src) => [`source.${src}`, `meta.embedded.block.${src}`]);
 
   const createScopes = (index) => {
     const scopeMatchers = [];
@@ -22,9 +24,9 @@ module.exports = (name, colors, scope) => {
       const middle = repeat(level + 1, scope.repeat);
 
       scopeMatchers.push(
-        ...scope.begin.flatMap((begin) => {
+        ...scope.source.flatMap((source) => {
           return scope.end.map((end) => {
-            return `${begin} ${middle} ${end}`;
+            return `${source} ${middle} ${end}`;
           });
         })
       );

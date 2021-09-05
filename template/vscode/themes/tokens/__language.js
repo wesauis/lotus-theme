@@ -70,6 +70,7 @@ module.exports = ({ tokens: { language } }) => [
   },
   {
     name: "Punctuation",
+    // TODO dart
     scope: [
       "punctuation",
       "punctuation.definition",
