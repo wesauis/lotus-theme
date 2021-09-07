@@ -148,6 +148,9 @@ module.exports = ({ tokens: { operators } }) => [
       "punctuation.definition.template-expression",
       "constant.other.placeholder",
       "punctuation.definition.interpolation",
+      "punctuation.definition.template-expression.begin",
+      "punctuation.definition.template-expression.end",
+      "punctuation.section.embedded"
     ],
     settings: {
       foreground: operators.placeholder,

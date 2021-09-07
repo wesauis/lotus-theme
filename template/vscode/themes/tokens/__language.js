@@ -1,8 +1,12 @@
 /** @type {import("../../../../assembler/src/template.js").GenPart} */
-module.exports = ({ tokens: { language } }) => [
+module.exports = ({ tokens: { language, keyLevels } }) => [
   {
     name: "BuiltIn",
-    scope: ["support.constant", "support.type.object.module"],
+    scope: [
+      "support.constant",
+      "support.type.object.module",
+      "constant.language",
+    ],
     settings: {
       foreground: language.builtin,
     },
@@ -75,6 +79,7 @@ module.exports = ({ tokens: { language } }) => [
       "punctuation",
       "punctuation.definition",
       "punctuation.definition.string string",
+      "punctuation.definition.string.end",
       // TODO dart string interpolated string
       // "punctuation.definition.tag",
       // "punctuation.separator.inheritance.php",
@@ -131,5 +136,16 @@ module.exports = ({ tokens: { language } }) => [
     settings: {
       foreground: language.brace,
     },
+  },
+  {
+    name: "Properties",
+    // TODO keylevels like rainbow
+    scope: "variable.other.object.property",
+    settings: { foreground: keyLevels?.[0] },
+  },
+  {
+    name: "Property End Level",
+    scope: "source variable.other.property",
+    settings: { foreground: keyLevels?.[1] },
   },
 ];

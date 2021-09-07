@@ -11,6 +11,7 @@ module.exports = ({ markdown, ui, tokens: { language } }) => [
     name: "Markdown - Ponctuation",
     scope: [
       "markdown.heading",
+      // TODO what this `|` really does??
       "markup.heading | markup.heading entity.name",
       "markup.heading.markdown punctuation.definition.heading.markdown",
     ],

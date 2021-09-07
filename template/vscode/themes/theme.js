@@ -27,6 +27,7 @@ module.exports = (schemas) => {
         "variable.defaultLibrary": schema.tokens.language.builtin,
       },
       tokenColors: [
+        // TODO git_gutter
         // TODO regex highlight
         // TODO string template parenthesis (test1: html.js vs js.html)
         // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
@@ -58,6 +59,7 @@ module.exports = (schemas) => {
           levels: 16,
         }),
         // TODO tokenize keylevels: py,php,c#,dart,yaml,go
+        // TODO tokenize proplevels: js,ts
         // TODO more realistic keylevel test
       ],
       colors: {
