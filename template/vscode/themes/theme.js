@@ -5,6 +5,7 @@ const languageTokens = require("./tokens/__language.js");
 const literalTokens = require("./tokens/__literals.js");
 const markdownTokens = require("./tokens/__markdown.js");
 const keyLevels = require("./tokens/__key_levels.js");
+const regexpTokens = require("./tokens/__regexp.js");
 
 /** @type {import('../../../assembler/src/template').GenPack} */
 module.exports = (schemas) => {
@@ -29,6 +30,7 @@ module.exports = (schemas) => {
       tokenColors: [
         // TODO git_gutter
         // TODO regex highlight
+        // TODO this | self
         // TODO string template parenthesis (test1: html.js vs js.html)
         // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
         // TODO samples for all tested languages
@@ -61,6 +63,7 @@ module.exports = (schemas) => {
         // TODO tokenize keylevels: py,php,c#,dart,yaml,go
         // TODO tokenize proplevels: js,ts
         // TODO more realistic keylevel test
+        ...regexpTokens(schema),
       ],
       colors: {
         "terminal.foreground": schema.ui.text,

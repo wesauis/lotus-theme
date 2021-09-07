@@ -77,6 +77,29 @@
     }
   },
 
+  "regexp": {
+    "any": "#CDE783",
+    "control": "#BF83E7",
+    "numeric": "#8CF2E1",
+    "escape": "#97D279",
+    "or": "#E8A17D",
+    "quantifier": "#7DBCE8",
+    "anchor": "#E67FD9",
+    "set": {
+      "range": "#E4C567",
+      "builtin": "#8CF2E1",
+      "negation": "#E06C7F",
+      "definition": "#A3A2A0"
+    },
+    "group": {
+      "ref": "#E7CD83",
+      "name": "#94C8EA",
+      "nocap": "#E06C7F",
+      "looking": "#BF83E7",
+      "definition": "#A3A2A0"
+    }
+  },
+
   "terminal": {
     "black": "#0B0D0E",
     "blackBright": "#627884",
