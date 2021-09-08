@@ -6,9 +6,18 @@ module.exports = (schemas) => [
       name: "lotus-theme",
       displayName: "Lotus Theme",
       description: "",
-      version: "0.0.1",
+      version: "1.0.0",
+      publisher: "wesauis",
       engines: {
         vscode: "^1.57.0",
+      },
+      author:
+        "Wesley Augusto Isotton <54046750+wesauis@users.noreply.github.com>",
+      homepage:
+        "https://github.com/wesauis/lotus-theme/tree/dev/template/vscode",
+      repository: {
+        type: "git",
+        url: "https://github.com/wesauis/lotus-theme.git",
       },
       categories: ["Themes"],
       contributes: {
