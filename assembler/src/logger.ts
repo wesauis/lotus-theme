@@ -23,6 +23,7 @@ export function init() {
   console.error = (...data) => {
     if (data[0] instanceof Error) {
       error(prefixes.error, data[0].message);
+      data[0].stack && error(data[0].stack);
       return;
     }
 

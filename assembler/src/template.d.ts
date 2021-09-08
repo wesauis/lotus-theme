@@ -1,6 +1,6 @@
 import { Schema } from "./schema";
 
-export type GenPart<T = any> = (schema: Schema) => T[];
+export type GenPart<T = any> = (schema: Schema) => T[] | T;
 
 export type Gen = (schema: Schema) => [string, object | string];
 

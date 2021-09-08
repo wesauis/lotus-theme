@@ -3,8 +3,90 @@
   "name": "Lotus Dark",
   "lightness": "dark",
 
+  "misc": [
+    "#e1e4e1",
+    "#babfc4",
+    "#6a737d",
+    "#323738",
+    "#282b28",
+    "#1d1f1c",
+    "#121411"
+  ],
+
+  "vscode": {
+    "docbox": {
+      "background": "#1C1E26"
+    },
+    "editor": {
+      "background": "#1C1E26"
+    },
+    "focusBorder": "#E87DC450",
+    "gitStatus": {
+      "added": { "background": "#97D279" },
+      "modified": { "background": "#E4C567" },
+      "deleted": { "background": "#FF5370" }
+    },
+    "iconbar": {
+      "background": "#1C1E26"
+    },
+    "indentGuide": {
+      "active": "#4E536A",
+      "inactive": "#272A35"
+    },
+    "minimap": {
+      "background": "#1C1E26"
+    },
+    "panel": {
+      "marker": "#E87DC4",
+      "background": "#1C1E26"
+    },
+    "sidebar": {
+      "background": "#1C1E26",
+      "header": {
+        "background": "#1C1E26"
+      }
+    },
+    "statusbar": {
+      "border": "#272A35",
+      "default": "#1C1E26",
+      "debug": "#931c06"
+    },
+    "tab": {
+      "active": {
+        "background": "#1C1E26",
+        "marker": "#E87DC4"
+      },
+      "empty": {
+        "background": "#1C1E26"
+      },
+      "inactive": {
+        "background": "#1C1E26"
+      },
+      "unfocused": {
+        "border": "#4E536A"
+      }
+    },
+    "titlebar": {
+      "active": {
+        "background": "#1C1E26"
+      },
+      "inactive": {
+        "background": "#1C1E26"
+      }
+    }
+  },
+
   "ui": {
-    "text": "#E7E6E4"
+    "text": "#E4E1E1",
+    "font": {
+      "dimed": "#D4D1D1"
+    },
+    "surface": {
+      "s0": "#1C1E26",
+      "s1": "#181818",
+      "s2": "#232323",
+      "s3": "#323738"
+    }
   },
 
   "tokens": {
@@ -28,10 +110,10 @@
       "importid": "#CDE783",
       "invalid": "#FF5370",
       "keyword": "#BF83E7",
-      "parameter": "#E7E6E4",
+      "parameter": "#E4E1E1",
       "punctuation": "#6A737D",
-      "variable": "#E7E6E4",
-      "vendored": "#E7E6E4"
+      "variable": "#E4E1E1",
+      "vendored": "#E4E1E1"
     },
     "literals": {
       "number": "#7DBCE8",
@@ -113,11 +195,11 @@
     "magentaBright": "#CF67E4",
     "red": "#D7425B",
     "redBright": "#E06C7F",
-    "white": "#E7E6E4",
+    "white": "#E4E1E1",
     "whiteBright": "#E9E8E5",
     "yellow": "#DDB43C",
     "yellowBright": "#E4C567",
-    "background": "#1C2022",
-    "selection": "#121516"
+    "background": "#1C1E26",
+    "selection": "#12141C"
   }
 }

@@ -137,15 +137,15 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
       foreground: language.brace,
     },
   },
-  {
-    name: "Properties",
-    // TODO keylevels like rainbow
-    scope: "variable.other.object.property",
-    settings: { foreground: keyLevels?.[0] },
-  },
-  {
-    name: "Property End Level",
-    scope: "source variable.other.property",
-    settings: { foreground: keyLevels?.[1] },
-  },
+  // {
+  //   name: "Properties",
+  //   // TODO keylevels like rainbow
+  //   scope: "variable.other.object.property",
+  //   settings: { foreground: keyLevels?.[0] },
+  // },
+  // {
+  //   name: "Property End Level",
+  //   scope: "source variable.other.property",
+  //   settings: { foreground: keyLevels?.[1] },
+  // },
 ];
