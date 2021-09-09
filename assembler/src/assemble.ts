@@ -14,7 +14,6 @@ export async function assemble(id: string, schema: Schema, config: Config) {
 
   await rm(outdir, { force: true, recursive: true });
   await mkdir(config.outdir, { recursive: true });
-  await copyFile(`CHANGELOG.md`, `${outdir}/CHANGELOG.md`);
 
   for await (const resouce of glob("**/*", {
     onlyFiles: true,
@@ -23,7 +22,7 @@ export async function assemble(id: string, schema: Schema, config: Config) {
     if (resouce instanceof Buffer) continue;
     const outfile = `${outdir}/${resouce}`;
 
-    if (basename(resouce).startsWith('__')) continue;
+    if (basename(resouce).startsWith("__")) continue;
     const isAsset = config.assets.includes(resouce);
     const isTemplate = resouce.endsWith(".js");
 
@@ -38,8 +37,6 @@ export async function assemble(id: string, schema: Schema, config: Config) {
 
       await copyFile(`template/${id}/${resouce}`, `${outdir}/${resouce}`);
     } else if (isTemplate) {
-      info(`generating from template: ${resouce}`);
-
       const gen = await import(`../template/${id}/${resouce}`).then(
         (mod) => mod.default as Gen
       );

@@ -17,7 +17,6 @@ export async function assemblePack(
 
   await rm(config.outdir, { force: true, recursive: true });
   await mkdir(config.outdir, { recursive: true });
-  await copyFile(`CHANGELOG.md`, `${config.outdir}/CHANGELOG.md`);
 
   for await (const resouce of glob("**/*", {
     onlyFiles: true,
