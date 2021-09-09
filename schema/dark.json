@@ -14,6 +14,9 @@
   ],
 
   "vscode": {
+    "text": {
+      "default": "#E4E1E1"
+    },
     "docbox": {
       "background": "#1C1E26"
     },
@@ -22,12 +25,17 @@
     },
     "focusBorder": "#E87DC450",
     "gitStatus": {
-      "added": { "background": "#97D279" },
-      "modified": { "background": "#E4C567" },
-      "deleted": { "background": "#FF5370" }
+      "added": "#97D279",
+      "conflic": "#FF5370",
+      "deleted": "#FF5370",
+      "ignored": "#686F8D",
+      "submodule": "#686F8D",
+      "modified": "#E4C567",
+      "untracked": "#30E8C9"
     },
     "iconbar": {
-      "background": "#1C1E26"
+      "background": "#1C1E26",
+      "marker": "#E87DC4"
     },
     "indentGuide": {
       "active": "#4E536A",
@@ -41,6 +49,7 @@
       "background": "#1C1E26"
     },
     "sidebar": {
+      "border": "#272A35",
       "background": "#1C1E26",
       "header": {
         "background": "#1C1E26"
@@ -54,7 +63,7 @@
     "tab": {
       "active": {
         "background": "#1C1E26",
-        "marker": "#E87DC4"
+        "border": { "t": null, "b": "#E87DC4" }
       },
       "empty": {
         "background": "#1C1E26"
