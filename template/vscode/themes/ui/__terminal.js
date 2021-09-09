@@ -1,13 +1,10 @@
 /** @type {import("../../../../assembler/src/template.js").GenPart} */
 module.exports = (schema) => ({
-  "terminal.foreground": schema.ui.text,
+  "terminal.foreground": schema.terminal.foreground,
   "terminal.background": schema.terminal.background,
-  // "terminal.border": "#F0F",
-  // "terminal.dropBackground": "#F0F",
-  // "terminal.tab.activeBoarder": "#F0F",
   "terminal.selectionBackground": schema.terminal.selection,
   "terminalCursor.background": schema.terminal.selection,
-  "terminalCursor.foreground": schema.ui.text,
+  "terminalCursor.foreground": schema.terminal.cursorColor,
   "terminal.ansiBlack": schema.terminal.black,
   "terminal.ansiBrightBlack": schema.terminal.blackBright,
   "terminal.ansiBlue": schema.terminal.blue,

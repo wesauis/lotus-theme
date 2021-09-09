@@ -193,6 +193,11 @@
   },
 
   "terminal": {
+    "background": "#1C1E26",
+    "selection": "#E783A450",
+    "foreground": "#E4E1E1",
+    "cursorColor": "#E783A4",
+
     "black": "#0B0D0E",
     "blackBright": "#627884",
     "blue": "#3C9ADD",
@@ -206,10 +211,8 @@
     "red": "#D7425B",
     "redBright": "#E06C7F",
     "white": "#E4E1E1",
-    "whiteBright": "#E9E8E5",
+    "whiteBright": "#E9E8E8",
     "yellow": "#DDB43C",
-    "yellowBright": "#E4C567",
-    "background": "#1C1E26",
-    "selection": "#12141C"
+    "yellowBright": "#E4C567"
   }
 }
