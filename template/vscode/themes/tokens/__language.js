@@ -137,6 +137,18 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
       foreground: language.brace,
     },
   },
+  {
+    name: "Current Instance Reference",
+    // TODO php,c,rust,c#,dart,go
+    scope: [
+      "variable.language.this",
+      "variable.language.special.self",
+      "variable.parameter.function.language.special.self",
+    ],
+    settings: {
+      foreground: language.instance,
+    },
+  },
   // {
   //   name: "Properties",
   //   // TODO keylevels like rainbow
