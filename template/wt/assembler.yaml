@@ -1,0 +1,4 @@
+outdir: build/wt.lotus-theme
+
+assets:
+  - README.md
