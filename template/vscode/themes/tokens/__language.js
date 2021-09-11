@@ -57,10 +57,6 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
       "keyword",
       "storage.type",
       "storage.modifier",
-      // "fenced_code.block.language.markdown",
-      // "punctuation.definition.binding-pattern",
-      // "punctuation.accessor",
-      // "punctuation.definition.parameters.varargs",
       "keyword.control",
       "source.cpp keyword.operator.new",
       "keyword.operator.delete",
@@ -81,15 +77,6 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
       "punctuation.definition.string string",
       "punctuation.definition.string.end",
       // TODO dart string interpolated string
-      // "punctuation.definition.tag",
-      // "punctuation.separator.inheritance.php",
-      // "punctuation.definition.tag.html",
-      // "punctuation.definition.tag.begin.html",
-      // "punctuation.definition.tag.end.html",
-      // "punctuation.section.embedded",
-      // "constant.other.color",
-      // "keyword.other.template",
-      // "keyword.other.substitution",
     ],
     settings: {
       foreground: language.punctuation,
@@ -98,29 +85,15 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
   {
     name: "Variable",
     scope: [
-      // TODO HOW TO FIX THIS?
-      // "variable - variable.other.property",
+      "source variable",
       "variable.parameter",
       "variable.interpolation",
-      // "variable.other.readwrite",
       "meta.block variable.other",
-      "entity.name.variable",
+      "source entity.name.variable",
       "support.type.property-name",
       "entity.other.attribute-name",
       "string.quoted variable.other",
-
-      // "string constant.other.placeholder",
-      // "meta.function-call.arguments",
-      // "variable.other.definition",
-      // "meta.definition.variable variable.other",
-      // "meta.tag",
-      // "meta.object-literal.key string.quoted",
-      // "string constant.other.placeholder",
-      // "meta.definition.variable punctuation.bracket",
-      // "meta.function-call.arguments",
-      // "variable.other.definition",
-      // "variable.other.object.property",
-      // "meta.definition.variable variable.other"
+      "source support.variable.property",
     ],
     settings: {
       foreground: language.variable,
@@ -139,7 +112,6 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
   },
   {
     name: "Current Instance Reference",
-    // TODO php,c,rust,c#,dart,go
     scope: [
       "variable.language.this",
       "variable.language.special.self",
@@ -149,15 +121,4 @@ module.exports = ({ tokens: { language, keyLevels } }) => [
       foreground: language.instance,
     },
   },
-  // {
-  //   name: "Properties",
-  //   // TODO keylevels like rainbow
-  //   scope: "variable.other.object.property",
-  //   settings: { foreground: keyLevels?.[0] },
-  // },
-  // {
-  //   name: "Property End Level",
-  //   scope: "source variable.other.property",
-  //   settings: { foreground: keyLevels?.[1] },
-  // },
 ];

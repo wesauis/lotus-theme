@@ -29,16 +29,9 @@ module.exports = (schemas) => {
           namespace: schema.tokens.types.namespace,
           struct: schema.tokens.types.struct,
           type: schema.tokens.types.type,
-          variable: schema.tokens.language.variable,
           "variable.defaultLibrary": schema.tokens.language.builtin,
         },
         tokenColors: [
-          // TODO git_gutter
-          // TODO regex highlight
-          // TODO this | self
-          // TODO string template parenthesis (test1: html.js vs js.html)
-          // TODO samples for `*.{css,sass,scss,less,stylus,postcss}`
-          // TODO samples for all tested languages
           ...staticTokens,
           ...typeTokens(schema),
           ...operatorTokens(schema),
@@ -69,9 +62,6 @@ module.exports = (schemas) => {
             end: ["string.quoted", "support.type.map.key"],
             levels: 16,
           }),
-          // TODO tokenize keylevels: py,php,c#,dart,yaml,go
-          // TODO tokenize proplevels: js,ts
-          // TODO more realistic keylevel test
           ...regexpTokens(schema),
         ],
         colors: {

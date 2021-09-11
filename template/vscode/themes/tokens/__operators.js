@@ -9,7 +9,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Arithmetic",
-    // TODO c,dart
     scope: ["keyword.operator.arithmetic", "keyword.operator.math"],
     settings: {
       foreground: operators.arithmetic,
@@ -17,7 +16,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Unary",
-    // TODO js,ts,java,rust,dart
     scope: [
       "keyword.operator.increment",
       "keyword.operator.decrement",
@@ -29,8 +27,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Assignment",
-    // TODO compound
-    // TODO js,ts,java
     scope: ["keyword.operator.assignment"],
     settings: {
       foreground: operators.assignment,
@@ -57,7 +53,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Logical",
-    // TODO rust,dart
     scope: ["keyword.operator.logical", "keyword.operator.null-coalescing"],
     settings: {
       foreground: operators.logical,
@@ -65,7 +60,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Identity",
-    // TODO py,dart
     scope: [
       "keyword.operator.expression.typeof",
       "keyword.operator.expression.instanceof",
@@ -80,7 +74,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Bitwise",
-    // TODO c,rust,php
     scope: ["keyword.operator.bitwise", "keyword.operator.arithmetic.bitwise"],
     settings: {
       foreground: operators.bitwise,
@@ -88,7 +81,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Nullcheck",
-    // TODO ts,c#
     scope: [
       "punctuation.accessor.optional",
       "keyword.operator.question",
@@ -102,7 +94,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Membership",
-    // TODO js,ts,py
     scope: [],
     settings: {
       foreground: operators.membership,
@@ -110,7 +101,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Address",
-    // TODO c,c#
     scope: [
       "keyword.operator.borrow.and",
       "keyword.operator.dereference",
@@ -125,7 +115,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Concat",
-    // TODO php
     scope: ["keyword.operator.string"],
     settings: {
       foreground: operators.concat,
@@ -133,7 +122,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Exec",
-    // TODO php
     scope: [],
     settings: {
       foreground: operators.exec,
@@ -141,7 +129,6 @@ module.exports = ({ tokens: { operators } }) => [
   },
   {
     name: "Placeholder",
-    // TODO dart,java
     scope: [
       "string.interpolated.expression",
       "constant.character.format.placeholder.other.python",
@@ -150,7 +137,7 @@ module.exports = ({ tokens: { operators } }) => [
       "punctuation.definition.interpolation",
       "punctuation.definition.template-expression.begin",
       "punctuation.definition.template-expression.end",
-      "punctuation.section.embedded"
+      "punctuation.section.embedded",
     ],
     settings: {
       foreground: operators.placeholder,
