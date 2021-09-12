@@ -71,4 +71,11 @@ module.exports = ({ tokens: { types } }) => [
       foreground: types.interface,
     },
   },
+  {
+    name: "Class",
+    scope: ["entity.other.inherited-class"],
+    settings: {
+      foreground: types.class,
+    },
+  },
 ];
