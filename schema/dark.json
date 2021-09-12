@@ -3,27 +3,27 @@
   "name": "Lotus Dark",
   "lightness": "dark",
 
-  "misc": [
-    "#e1e4e1",
-    "#babfc4",
-    "#6a737d",
-    "#323738",
-    "#282b28",
-    "#1d1f1c",
-    "#121411"
-  ],
-
   "vscode": {
+    "button": {
+      "background": "#991A6E",
+      "foreground": "#E4E1E1",
+      "hover": "#C4218E"
+    },
     "text": {
-      "default": "#E4E1E1"
+      "default": "#E4E1E1",
+      "link": {
+        "color": "#E87DC4",
+        "hover": "#F0A8D8"
+      }
     },
     "docbox": {
       "background": "#1C1E26"
     },
     "editor": {
-      "background": "#1C1E26"
+      "background": "#1C1E26",
+      "border": "#272A35"
     },
-    "focusBorder": "#E87DC450",
+    "focusBorder": "#0000",
     "gitStatus": {
       "added": "#97D279",
       "conflic": "#FF5370",
@@ -34,8 +34,15 @@
       "untracked": "#30E8C9"
     },
     "iconbar": {
+      "badge": {
+        "background": "#991A6E",
+        "foreground": "#E4E1E1"
+      },
       "background": "#1C1E26",
-      "marker": "#E87DC4"
+      "marker": "#E87DC4",
+      "foreground": "#E4E1E1",
+      "inactive": "#747171",
+      "border": null
     },
     "indentGuide": {
       "active": "#4E536A",
@@ -44,9 +51,21 @@
     "minimap": {
       "background": "#1C1E26"
     },
+    "notification": {
+      "header": "#D4D1D1",
+      "background": "#1C1E26",
+      "border": "#272A35",
+      "foreground": "#E4E1E1",
+      "icon": {
+        "info": "#30E8C9",
+        "warn": "#E4C567",
+        "error": "#FF5370"
+      }
+    },
     "panel": {
-      "marker": "#E87DC4",
-      "background": "#1C1E26"
+      "background": "#1C1E26",
+      "border": "#272A35",
+      "marker": "#E87DC4"
     },
     "sidebar": {
       "border": "#272A35",
@@ -65,6 +84,7 @@
         "background": "#1C1E26",
         "border": { "t": null, "b": "#E87DC4" }
       },
+      "border": null,
       "empty": {
         "background": "#1C1E26"
       },
@@ -89,12 +109,6 @@
     "text": "#E4E1E1",
     "font": {
       "dimed": "#D4D1D1"
-    },
-    "surface": {
-      "s0": "#1C1E26",
-      "s1": "#181818",
-      "s2": "#232323",
-      "s3": "#323738"
     }
   },
 
