@@ -5,9 +5,27 @@
 
   "vscode": {
     "button": {
-      "background": "#991A6E",
+      "primary": {
+        "background": "#991A6E",
+        "foreground": "#E4E1E1",
+        "hover": "#C4218E"
+      },
+      "secondary": {
+        "background": "#4E536A",
+        "foreground": "#E4E1E1",
+        "hover": "#575C75"
+      }
+    },
+    "breadcrumb": {
+      "active": "#E87DC4",
+      "background": "#1C1E26",
+      "foreground": "#D4D1D1",
+      "focus": "#F0A8D8"
+    },
+    "checkbox": {
       "foreground": "#E4E1E1",
-      "hover": "#C4218E"
+      "background": "#1C1E26",
+      "border": "#4E536A"
     },
     "text": {
       "default": "#E4E1E1",

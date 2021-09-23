@@ -6,7 +6,7 @@ module.exports = (schemas) => [
       name: "lotus-theme",
       displayName: "Lotus Theme",
       description: "",
-      version: "1.0.0",
+      version: "0.2.0",
       publisher: "wesauis",
       engines: {
         vscode: "^1.57.0",
